@@ -5,6 +5,8 @@ function [theta] = normalEqn(X, y)
 
 theta = zeros(size(X, 2), 1);
 
+m = length(y); % number of training examples
+
 % ====================== YOUR CODE HERE ======================
 % Instructions: Complete the code to compute the closed form solution
 %               to linear regression and put the result in theta.
@@ -12,8 +14,7 @@ theta = zeros(size(X, 2), 1);
 
 % ---------------------- Sample Solution ----------------------
 
-
-
+theta = pinv((1/m)*X.' * X) * ( (1/m)* X.' * y )
 
 % -------------------------------------------------------------
 

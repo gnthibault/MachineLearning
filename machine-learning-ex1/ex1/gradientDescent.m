@@ -19,7 +19,6 @@ for iter = 1:num_iters
 
     grad = (1/m) * X.' * (X*theta-y);
     theta = theta - alpha * grad;
-    computeCost(X, y, theta)
 
     % ============================================================
 

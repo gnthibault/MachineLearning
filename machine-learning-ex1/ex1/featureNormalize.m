@@ -26,9 +26,16 @@ sigma = zeros(1, size(X, 2));
 % Hint: You might find the 'mean' and 'std' functions useful.
 %       
 
+%moment of order 1 and 2 of each variables
+mu = mean(X)
+sigma = std(X)
 
+%Replicate values over a vector of the same size as X
+muVec = repmat(mu,size(X,1),1)
+sigmaVec = repmat(sigma,size(X,1),1)
 
-
+%Centering and reducing data
+X_norm = (X-muVec)./sigmaVec
 
 
 

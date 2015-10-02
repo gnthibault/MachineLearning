@@ -7,15 +7,14 @@ function J = computeCost(X, y, theta)
 m = length(y); % number of training examples
 
 % You need to return the following variables correctly 
-regression = X*theta;
-error = regression - y;
-J = (1/(2*length(y)) * dot(error,error) );
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: Compute the cost of a particular choice of theta
 %               You should set J to the cost.
 
-
+regression = X*theta;
+error = regression - y;
+J = (1/(2*m) * dot(error,error) );
 
 
 
