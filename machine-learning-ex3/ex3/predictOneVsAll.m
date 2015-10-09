@@ -30,8 +30,8 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
-classified = sigmoid(X*all_theta.')
-[a,p] = max(classified, [], 2)
+classified = sigmoid(X*all_theta.');
+[a,p] = max(classified, [], 2);
 
 
 
