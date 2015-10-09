@@ -21,10 +21,20 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
+%Adding the bias feature
+X = [ones(m, 1) X];
 
+%Hidden Layer classification
+OutFirst = sigmoid(X*Theta1.');
 
+%Adding the bias feature at output of layer 1
+OutFirst = [ones(m, 1) OutFirst];
 
+%Output Layer classification
+OutSecond = sigmoid(OutFirst*Theta2.');
 
+%classified = sigmoid(X*all_theta.');
+[a,p] = max(OutSecond, [], 2);
 
 
 
