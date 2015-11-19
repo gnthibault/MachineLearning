@@ -101,7 +101,8 @@ J=(1/m)*sum(sum(costMatrix)) ;
 delta3 = a3-y;
 
 %Compute the delta of layer 2
-delta2= delta3 * Theta2 .* sigmoidGradient(a2);
+sigmoidGrad = [ones(m,1) sigmoidGradient(z2)];
+delta2= delta3 * Theta2 .* sigmoidGrad;
 %There should be no delta on the bias unit
 delta2 = delta2(:,2:size(delta2,2));
 
