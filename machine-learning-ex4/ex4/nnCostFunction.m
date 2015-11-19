@@ -101,7 +101,7 @@ J=(1/m)*sum(sum(costMatrix)) ;
 delta3 = a3-y;
 
 %Compute the delta of layer 2
-delta2= delta3 * Theta2 .* (a2.*(ones(size(a2))-a2));
+delta2= delta3 * Theta2 .* sigmoidGradient(a2);
 %There should be no delta on the bias unit
 delta2 = delta2(:,2:size(delta2,2));
 
@@ -117,9 +117,18 @@ Theta2_grad = (1/m) * delta3.'*a2;
 %               and Theta2_grad from Part 2.
 %
 
-regularization = norm(Theta1(:,1:size(Theta1,2)))^2 + ...
-		norm(Theta2(:,1:size(Theta2,2)))^2 ;
-%J = J + (lambda/m)*regularization ;
+%Discardin the bias unit contribution in regularization
+regulTheta1 = Theta1;
+regulTheta1(:,1)=0;
+regulTheta2 = Theta2;
+regulTheta2(:,1)=0;
+
+Theta1_grad = Theta1_grad + (lambda/m)*regulTheta1;
+Theta2_grad = Theta2_grad + (lambda/m)*regulTheta2;
+
+regularization = sum(sum(regulTheta1.^2)) + ...
+		sum(sum(regulTheta2.^2)) ;
+J = J + (lambda/(2*m))*regularization ;
 
 
 
