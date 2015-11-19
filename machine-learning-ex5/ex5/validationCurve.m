@@ -40,7 +40,22 @@ error_val = zeros(length(lambda_vec), 1);
 %
 
 
+for i = 1:length(lambda_vec)
+    %Challenge the lambda parameter
+    lambda = lambda_vec(i);
+    
+    %train on limited training set
+    [theta] = trainLinearReg(X, y, lambda);
 
+    % Compute error on training
+    %Note that they should be randomized
+    [J, grad] = linearRegCostFunction(X, y, theta, 0);
+    error_train(i) = J;
+    
+    % Compute error over cross validation
+    [J, grad] = linearRegCostFunction(Xval, yval, theta, 0);
+    error_val(i) = J;
+end
 
 
 

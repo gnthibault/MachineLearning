@@ -53,8 +53,19 @@ error_val   = zeros(m, 1);
 
 % ---------------------- Sample Solution ----------------------
 
+for i = 1:m
+    %train on limited training set
+    [theta] = trainLinearReg(X(1:i,:), y(1:i), lambda);
 
-
+    % Compute error on training
+    %Note that they should be randomized
+    [J, grad] = linearRegCostFunction(X(1:i,:), y(1:i), theta, 0);
+    error_train(i) = J;
+    
+    % Compute error over cross validation
+    [J, grad] = linearRegCostFunction(Xval, yval, theta, 0);
+    error_val(i) = J;
+end
 
 
 

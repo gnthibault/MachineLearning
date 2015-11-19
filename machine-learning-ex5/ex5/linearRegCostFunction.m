@@ -19,16 +19,16 @@ grad = zeros(size(theta));
 %               You should set J to the cost and grad to the gradient.
 %
 
+%Classic linear least square + regularisation
+regularization = (lambda/(2*m))*norm(theta(2:size(theta)))^2;
+J = (1/(2*m))*norm(X*theta-y)^2 + regularization;
 
+%Compute gradient of regularisation part
+gradRegularization = (lambda/m)*theta;
+%Do not regularize bias parameter
+gradRegularization(1)=0;
 
-
-
-
-
-
-
-
-
+grad = (1/m)*X.'*(X*theta-y) + gradRegularization;
 
 % =========================================================================
 
