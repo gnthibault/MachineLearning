@@ -21,11 +21,20 @@ idx = zeros(size(X,1), 1);
 % Note: You can use a for-loop over the examples to compute this.
 %
 
-
-
-
-
-
+%For each element of the training set, compute its closes centroid
+for i = 1:size(X,1)
+    min_dist = norm(X(i,:)-centroids(1,:));
+    min_idx = 1;
+    %Loop over all centroids
+    for j = 1:size(centroids,1)
+        cur_dist = norm(X(i,:)-centroids(j,:));
+        if cur_dist < min_dist
+            min_dist = cur_dist;
+            min_idx = j;
+        end
+     end
+    idx(i) = min_idx;
+end
 
 % =============================================================
 

@@ -21,8 +21,16 @@ X_rec = zeros(size(Z, 1), size(U, 1));
 %               Notice that U(j, 1:K) is a row vector.
 %               
 
+%For all vectors expressed in the K-first vector coordinates
+% for i = 1:size(Z, 1)
+%     %v is the ith vector of Z
+%     v = Z(i, :)';
+%     %As svd was applied on a positive definite matrix, its basis is
+%     %orthogonal so the following simple analysis scheme work
+%     X_rec(i,:)=v' * U(:, 1:K)';
+% end
 
-
+X_rec=Z* U(:, 1:K)';
 % =============================================================
 
 end

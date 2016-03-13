@@ -26,8 +26,22 @@ centroids = zeros(K, n);
 % Note: You can use a for-loop over the centroids to compute this.
 %
 
-
-
+%For each cluster, compute its new centroid
+for i = 1:K
+	sum_centroid = zeros(1,n);
+    num_centroid = 0;
+	for j = 1:size(idx) 
+        if idx(j) == i
+            sum_centroid = sum_centroid + X(j,:);
+            num_centroid = num_centroid + 1;
+        end
+    end
+    if num_centroid > 0
+        centroids(i,:) = sum_centroid/num_centroid;
+    else
+        centroids(i,:) = zeros(n,1);
+    end
+end
 
 
 

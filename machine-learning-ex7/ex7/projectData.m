@@ -18,9 +18,15 @@ Z = zeros(size(X, 1), K);
 %                    projection_k = x' * U(:, k);
 %
 
+% for i = 1:size(X, 1)
+%     %get the ith row vector of X
+%     x = X(i, :)';
+%     %project it over the K first orthogonal vectors of U
+%     projection_k = x' * U(:, 1:K);
+%     Z(i,:)=projection_k;
+% end
 
-
-
+Z = X*U(:, 1:K);
 % =============================================================
 
 end

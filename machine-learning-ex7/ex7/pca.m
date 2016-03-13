@@ -20,8 +20,10 @@ S = zeros(n);
 %       number of examples).
 %
 
-
-
+%Covariance matrix of X, where X contains m row vectors of interest, or m
+%realisations of n variables
+covX= (1/m)*X'*X;
+[U, S, V] = svd(covX);
 
 
 

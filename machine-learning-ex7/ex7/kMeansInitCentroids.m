@@ -13,8 +13,8 @@ centroids = zeros(K, size(X, 2));
 %               the dataset X
 %
 
-
-
+%select K random samples from X
+centroids = X(randi(size(X,1),1,K),:);
 
 
 
