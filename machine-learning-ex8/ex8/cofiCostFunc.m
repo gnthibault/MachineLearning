@@ -40,20 +40,32 @@ Theta_grad = zeros(size(Theta));
 %                     partial derivatives w.r.t. to each element of Theta
 %
 
+%First compute expected score as a num_movies*num_users matrix
+expScore = X*Theta';
+%Error for this score should only accounts for actually rated movies
+scoreError = (expScore-Y).*R;
+%Square score error is the weighted frobenius norm of this one
+squareScoreError = (1/2)*norm(scoreError,'fro')^2;
+
+%now the X regularization part
+regX = (lambda/2.0)*norm(X,'fro')^2;
+
+%now the Theta regularization part
+regTheta = (lambda/2.0)*norm(Theta,'fro')^2;
+
+%Full cost
+J=squareScoreError+regX+regTheta;
+
+%X Gradient computation part
+X_grad = scoreError*Theta;
+%Add regularization parameter
+X_grad = X_grad + lambda * X;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+%Theta Gradient computation part
+Theta_grad = scoreError'*X;
+%Add regularization parameter
+Theta_grad = Theta_grad + lambda * Theta;
 
 % =============================================================
 
