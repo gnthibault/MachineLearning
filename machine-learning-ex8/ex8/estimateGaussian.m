@@ -21,13 +21,11 @@ sigma2 = zeros(n, 1);
 %               should contain variance of the i-th feature.
 %
 
-
-
-
-
-
-
-
+%Mean and variance estimator is easy
+mu = mean(X);
+%Coursera prefer that we used the biased estimator of variance, so that we
+%must use 1 as the second parameter of var
+sigma2 = var(X,1);
 
 
 % =============================================================
